@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: postgres-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: web
+      component: postgres
   template:
     metadata:
       labels:
-        component: web
+        component: postgres
     spec:
       containers:
-        - name: client
-          image: stephengrider/multi-worker
+        - name: postgres
+          image: postgres:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 5432
+
+  
